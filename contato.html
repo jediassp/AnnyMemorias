@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- Define que o documento é HTML5 -->
+
+<html lang="pt-BR">
+<!-- Define o idioma da página como português do Brasil -->
+
+<head>
+  <meta charset="UTF-8">
+  <!-- Permite uso de acentos e caracteres especiais -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Faz o site ser responsivo em celulares -->
+
+  <title>Contato - Anny Memorias</title>
+  <!-- Título que aparece na aba do navegador -->
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Importa o Tailwind CSS (framework de estilização) -->
+</head>
+
+<body class="bg-neutral-100">
+<!-- Corpo da página com fundo cinza claro -->
+
+<section 
+  id="formContainer"
+  class="p-6 max-w-xl mx-auto bg-white mt-10 rounded-2xl shadow opacity-0 translate-y-10 transition-all duration-700"
+>
+  <!-- Container principal do formulário -->
+  <!-- Começa invisível e deslocado (para animação ao carregar a página) -->
+
+  <h1 class="text-2xl font-bold mb-4 text-center">
+    📩 Fale Conosco
+  </h1>
+  <!-- Título da página de contato -->
+
+  <form 
+  id="formContato"
+  action="https://formspree.io/f/xaqadybl"
+  method="POST"
+  class="flex flex-col gap-4"
+>
+
+  <!-- Nome -->
+  <input 
+    type="text" 
+    name="nome" 
+    placeholder="Seu nome" 
+    required 
+    class="p-3 border rounded"
+  >
+
+  <!-- Email -->
+  <input 
+    type="email" 
+    name="email" 
+    placeholder="Seu e-mail" 
+    required 
+    class="p-3 border rounded"
+  >
+
+  <!-- Produto (use só UM, não os dois) -->
+  <select name="produto" required class="p-3 border rounded">
+    <option value="">Selecione um produto</option>
+    <option>Picolé de Pudim</option>
+    <option>Pudim de Copo</option>
+  </select>
+
+  <!-- Quantidade -->
+  <input 
+    type="number" 
+    name="quantidade" 
+    placeholder="Quantidade" 
+    min="1"
+    required 
+    class="p-3 border rounded"
+  >
+
+  <!-- Observação -->
+  <textarea 
+    name="observacao" 
+    placeholder="Observações (ex: entrega, horário...)" 
+    class="p-3 border rounded h-24"
+  ></textarea>
+
+  <!-- Mensagem -->
+  <textarea 
+    name="mensagem" 
+    placeholder="Mensagem adicional"
+    class="p-3 border rounded h-32"
+  ></textarea>
+
+  <!-- Anti-spam -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <!-- Botão -->
+  <button 
+    id="btnEnviar"
+    type="submit"
+    class="bg-black text-white py-3 rounded hover:bg-gray-800 transition"
+  >
+    Enviar pedido
+  </button>
+
+</form>
+
+  <!-- Área onde aparece mensagem de sucesso ou erro -->
+  <p id="statusMsg" class="text-center mt-4 hidden"></p>
+
+  <!-- Link para voltar para a página principal -->
+  <a href="index.html" class="block text-center mt-4 underline">
+    ← Voltar
+  </a>
+
+</section>
+
+<!-- Importa o arquivo JavaScript -->
+<script src="script.js"></script>
+<!-- Esse script controla:
+     - envio do formulário (fetch)
+     - feedback de sucesso/erro
+     - animação ao carregar -->
+
+</body>
+</html>

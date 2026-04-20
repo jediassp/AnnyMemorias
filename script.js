@@ -24,7 +24,6 @@ function comprar(produto) {
 // =========================
 // FORMULÁRIO DE CONTATO
 // =========================
-
 // Espera o HTML carregar completamente antes de executar
 document.addEventListener("DOMContentLoaded", () => {
 

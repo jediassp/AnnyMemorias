@@ -22,9 +22,9 @@ function comprar(produto) {
   );
 }
 // =========================
-// FORMULÁRIO DE CONTATO
 // =========================
-// Espera o HTML carregar completamente antes de executar
+// FORMULÁRIO
+// =========================
 document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("formContato");
@@ -38,39 +38,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
       e.preventDefault();
 
+      // 🔒 Proteção anti-spam (honeypot)
+      if (form._gotcha.value) {
+        console.warn("Spam detectado");
+        return;
+      }
+
+      // Validação extra
+      if (form.quantidade.value <= 0) {
+        statusMsg.innerText = "❌ Quantidade inválida";
+        statusMsg.classList.remove("hidden");
+        statusMsg.classList.add("text-red-600");
+        return;
+      }
+
       btn.innerText = "Enviando...";
       btn.disabled = true;
 
       statusMsg.classList.remove("hidden");
       statusMsg.classList.remove("text-red-600", "text-green-600");
 
-      // Coleta dados do formulário
-      const dados = {
-        nome: form.nome.value,
-        email: form.email.value,
-        produto: form.produto.value,
-        quantidade: form.quantidade.value,
-        observacao: form.observacao.value,
-        mensagem: form.mensagem.value
-      };
-
       try {
 
-        // =========================
-        // 1. ENVIO DE EMAIL (EmailJS)
-        // =========================
-        await emailjs.send("service_5bxwleb", "template_duldpsg", dados);
-
-        // =========================
-        // 2. SALVAR NO GOOGLE SHEETS (HISTÓRICO)
-        // =========================
-        await fetch("https://script.google.com/macros/s/AKfycbxS0T3ez8RhrPtfM436ij-0duD3v__kLblJcuE7CjmWr-K1_Rfml_b-tY7uIgOs1raO/exec", {
-          method: "POST",
-          body: JSON.stringify(dados)
+        await emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", {
+          nome: form.nome.value,
+          email: form.email.value,
+          produto: form.produto.value,
+          quantidade: form.quantidade.value,
+          observacao: form.observacao.value,
+          mensagem: form.mensagem.value
         });
 
-        // Sucesso
-        statusMsg.innerText = "✅ Pedido enviado e salvo no sistema!";
+        statusMsg.innerText = "✅ Pedido enviado com sucesso!";
         statusMsg.classList.add("text-green-600");
 
         form.reset();
@@ -79,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.error(error);
 
-        statusMsg.innerText = "❌ Erro ao enviar.";
+        statusMsg.innerText = "❌ Erro ao enviar. Tente novamente.";
         statusMsg.classList.add("text-red-600");
       }
 

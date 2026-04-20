@@ -1,45 +1,83 @@
 <!DOCTYPE html>
+<!-- Define que o documento é HTML5 -->
+
 <html lang="pt-BR">
+<!-- Início do HTML e define o idioma como português do Brasil -->
+
 <head>
   <meta charset="UTF-8">
+  <!-- Define a codificação de caracteres (aceita acentos, ç, etc) -->
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Faz o site ficar responsivo em celulares -->
+
   <title>Anny Memorias</title>
+  <!-- Título da aba do navegador -->
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Importa o Tailwind CSS (framework de estilização) -->
 </head>
+
 <body class="bg-neutral-100">
+<!-- Corpo do site com fundo cinza claro -->
 
 <header class="bg-black text-white p-6 text-center shadow">
+  <!-- Cabeçalho com fundo preto, texto branco e sombra -->
+
   <div class="flex flex-col items-center gap-2">
-    
-  
+    <!-- Container com flexbox, centralizado e com espaçamento -->
+
     <img src="logo.jpeg" alt="logotipo da empresa" class="w-16 h-16 object-contain">
+    <!-- Logo da empresa -->
 
     <h1 class="text-3xl font-bold tracking-wide">Anny Memorias</h1>
+    <!-- Nome da empresa -->
+
     <p class="text-sm text-gray-300">Doces artesanais que marcam momentos</p>
+    <!-- Slogan da empresa -->
     
   </div>
 </header>
 
 <section class="p-6">
+  <!-- Seção de produtos com espaçamento -->
+
   <h2 class="text-2xl font-bold mb-6 text-center">Produtos</h2>
+  <!-- Título da seção -->
 
   <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+    <!-- Grid responsivo com 2 colunas em telas médias -->
 
+    <!-- Produto 1 -->
     <div class="bg-white p-6 rounded-2xl shadow text-center">
       <img src="picole.jpg" alt="Picolé de Pudim" class="w-full h-48 object-cover rounded mb-3">
+      <!-- Imagem do produto -->
+
       <h3 class="text-xl font-bold mb-2">🍦 Picolé de Pudim</h3>
+      <!-- Nome do produto -->
+
       <p class="text-gray-600 mb-4">Delicioso, cremoso e refrescante</p>
+      <!-- Descrição -->
+
       <p class="text-lg font-bold mb-4">R$ 7,00</p>
+      <!-- Preço -->
+
       <button onclick="comprar('Picolé de Pudim')" class="bg-black text-white px-4 py-2 rounded">
+        <!-- Botão que chama a função comprar -->
         Pedir no WhatsApp
       </button>
     </div>
 
+    <!-- Produto 2 -->
     <div class="bg-white p-6 rounded-2xl shadow text-center">
       <img src="pudim.jpg" alt="Pudim de Copo" class="w-full h-48 object-cover rounded mb-3">
+      
       <h3 class="text-xl font-bold mb-2">🍮 Pudim de Copo</h3>
+      
       <p class="text-gray-600 mb-4">Prático e irresistível</p>
+      
       <p class="text-lg font-bold mb-4">R$ 10,00</p>
+
       <button onclick="comprar('Pudim de Copo')" class="bg-black text-white px-4 py-2 rounded">
         Pedir no WhatsApp
       </button>
@@ -49,25 +87,47 @@
 </section>
 
 <section class="p-6 bg-white shadow mt-6 text-center">
+  <!-- Seção de contato -->
+
   <h2 class="text-xl font-bold mb-2">📞 Contato</h2>
+  
   <p>WhatsApp: (11) 99195-1470</p>
+  <!-- Número de contato -->
+
   <p>Email: annymemorias@outlook.com</p>
+  <!-- Email -->
 </section>
 
 <section class="p-6 text-center">
+  <!-- Seção de redes sociais -->
+
   <h2 class="text-xl font-bold mb-2">Venha nos conhecer</h2>
+  
   <p class="mb-4">Siga-nos nas redes sociais</p>
+
   <div class="flex justify-center gap-6 text-lg">
-    <a href="https://instagram.com/annymemorias" target="_blank" class="text-black underline">Instagram: @annymemorias</a>
-    <a href="https://tiktok.com/@annymemorias" target="_blank" class="text-black underline">TikTok: @annymemorias</a>
+    <!-- Links das redes sociais -->
+
+    <a href="https://instagram.com/annymemorias" target="_blank" class="text-black underline">
+      Instagram: @annymemorias
+    </a>
+
+    <a href="https://tiktok.com/@annymemorias" target="_blank" class="text-black underline">
+      TikTok: @annymemorias
+    </a>
   </div>
 </section>
 
 <script>
-function comprar(produto){
-  const msg = `Olá, gostaria de pedir: ${produto}`;
-  window.open(`https://wa.me/5511991951470?text=${encodeURIComponent(msg)}`, '_blank');
-}
+  // Função chamada quando o usuário clica em "Pedir no WhatsApp"
+  function comprar(produto){
+    
+    // Cria a mensagem com o nome do produto
+    const msg = `Olá, gostaria de pedir: ${produto}`;
+
+    // Abre o WhatsApp com a mensagem já preenchida
+    window.open(`https://wa.me/5511991951470?text=${encodeURIComponent(msg)}`, '_blank');
+  }
 </script>
 
 </body>

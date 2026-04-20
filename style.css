@@ -1,58 +1,67 @@
+/* Estilo principal do card de produto */
 .card {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  transition: 0.3s;
+  background: white; /* Fundo branco */
+  padding: 20px; /* Espaçamento interno */
+  border-radius: 16px; /* Bordas arredondadas */
+  text-align: center; /* Centraliza o conteúdo */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Sombra suave */
+  transition: 0.3s; /* Animação suave para hover */
 }
 
+/* Efeito ao passar o mouse no card */
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05); /* Aumenta levemente o tamanho */
 }
 
+/* Estilo da imagem do produto */
 .produto-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 10px;
+  width: 100%; /* Ocupa toda largura do container */
+  height: 220px; /* Altura fixa */
+  object-fit: cover; /* Mantém proporção cortando excesso */
+  border-radius: 12px; /* Bordas arredondadas */
+  margin-bottom: 10px; /* Espaço abaixo da imagem */
 }
 
+/* Título dentro do card */
 .card h3 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+  font-size: 20px; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 10px; /* Espaço abaixo */
 }
 
+/* Parágrafo dentro do card (descrição) */
 .card p {
-  color: #666;
-  margin-bottom: 10px;
+  color: #666; /* Cinza médio */
+  margin-bottom: 10px; /* Espaço abaixo */
 }
 
+/* Estilo do preço */
 .preco {
-  display: block;
-  font-size: 22px;
-  font-weight: bold;
-  color: green;
-  margin-bottom: 15px;
+  display: block; /* Ocupa linha inteira */
+  font-size: 22px; /* Tamanho maior */
+  font-weight: bold; /* Destaque */
+  color: green; /* Cor verde (preço) */
+  margin-bottom: 15px; /* Espaço abaixo */
 }
 
+/* Estilo da logo */
 .logo {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
+  width: 60px; /* Largura fixa */
+  height: 60px; /* Altura fixa */
+  object-fit: contain; /* Mantém proporção sem cortar */
 }
 
+/* Botão dentro do card */
 .card button {
-  background: black;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
+  background: black; /* Fundo preto */
+  color: white; /* Texto branco */
+  padding: 10px 15px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  border: none; /* Remove borda padrão */
+  cursor: pointer; /* Cursor de clique */
 }
 
+/* Efeito hover no botão */
 .card button:hover {
-  background: #333;
+  background: #333; /* Preto mais claro ao passar o mouse */
 }

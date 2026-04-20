@@ -65,3 +65,16 @@
 .card button:hover {
   background: #333; /* Preto mais claro ao passar o mouse */
 }
+/* Estilo básico do link */
+.email-link {
+    color: #007bff; /* Cor azul */
+    text-decoration: none; /* Remove o sublinhado */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
+.email-link:hover {
+    color: #0056b3;
+    text-decoration: underline; /* Adiciona sublinhado no hover */
+}

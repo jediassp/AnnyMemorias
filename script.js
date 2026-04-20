@@ -3,33 +3,33 @@
 // =========================
 function comprar(produto) {
 
-  // Validação básica (evita erro se não vier produto)
+  // Validação básica:
+  // evita que a função continue caso o produto não seja informado
   if (!produto) {
     console.error("Produto não informado");
     return;
   }
 
-  // Cria a mensagem que será enviada
+  // Monta a mensagem que será enviada no WhatsApp
+  // Template string permite inserir variável diretamente
   const msg = `Olá, gostaria de pedir: ${produto}`;
 
-  // Abre o WhatsApp com a mensagem já preenchida
+  // Abre uma nova aba com o link do WhatsApp já preenchido
+  // encodeURIComponent garante que a mensagem não quebre a URL
   window.open(
     `https://wa.me/5511991951470?text=${encodeURIComponent(msg)}`, 
     '_blank'
   );
 }
-
-
 // =========================
 // FORMULÁRIO DE CONTATO
 // =========================
 
-// Aguarda o carregamento do DOM
+// Espera o HTML carregar completamente antes de executar
 document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.getElementById("formContato");
 
-  // Só executa se o formulário existir (evita erro no index.html)
   if (form) {
 
     const btn = document.getElementById("btnEnviar");
@@ -39,60 +39,75 @@ document.addEventListener("DOMContentLoaded", () => {
 
       e.preventDefault();
 
-      // Estado de loading
       btn.innerText = "Enviando...";
       btn.disabled = true;
 
-      const data = new FormData(form);
+      statusMsg.classList.remove("hidden");
+      statusMsg.classList.remove("text-red-600", "text-green-600");
+
+      // Coleta dados do formulário
+      const dados = {
+        nome: form.nome.value,
+        email: form.email.value,
+        produto: form.produto.value,
+        quantidade: form.quantidade.value,
+        observacao: form.observacao.value,
+        mensagem: form.mensagem.value
+      };
 
       try {
-        const response = await fetch(form.action, {
+
+        // =========================
+        // 1. ENVIO DE EMAIL (EmailJS)
+        // =========================
+        await emailjs.send("service_5bxwleb", "template_duldpsg", dados);
+
+        // =========================
+        // 2. SALVAR NO GOOGLE SHEETS (HISTÓRICO)
+        // =========================
+        await fetch("https://script.google.com/macros/s/AKfycbxS0T3ez8RhrPtfM436ij-0duD3v__kLblJcuE7CjmWr-K1_Rfml_b-tY7uIgOs1raO/exec", {
           method: "POST",
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(dados)
         });
 
-        if (response.ok) {
-          statusMsg.classList.remove("hidden");
-          statusMsg.innerText = "✅ Mensagem enviada com sucesso!";
-          statusMsg.className = "text-green-600 text-center mt-4";
+        // Sucesso
+        statusMsg.innerText = "✅ Pedido enviado e salvo no sistema!";
+        statusMsg.classList.add("text-green-600");
 
-          form.reset();
+        form.reset();
 
-        } else {
-          statusMsg.classList.remove("hidden"); 
-          statusMsg.innerText = "❌ Erro ao enviar.";
-          statusMsg.className = "text-red-600 text-center mt-4";
-        }
+      } catch (error) {
 
-      } catch {
+        console.error(error);
 
-        statusMsg.innerText = "❌ Falha de conexão.";
-        statusMsg.className = "text-red-600 text-center mt-4";
+        statusMsg.innerText = "❌ Erro ao enviar.";
+        statusMsg.classList.add("text-red-600");
       }
 
-      // Volta ao estado normal
       btn.innerText = "Enviar pedido";
       btn.disabled = false;
+
     });
 
   }
 
 });
-
-
 // =========================
 // ANIMAÇÃO DO FORM
 // =========================
 
-// Aguarda carregamento completo da página
+// Aguarda carregamento total da página (inclui imagens, CSS, etc.)
 window.addEventListener("load", () => {
 
   const formContainer = document.getElementById("formContainer");
+  // Container do formulário
 
   if (formContainer) {
 
+    // Pequeno delay para suavizar a entrada
     setTimeout(() => {
+      // Remove classes que deixavam o elemento invisível/deslocado
+      // Isso ativa a animação definida no CSS (Tailwind)
       formContainer.classList.remove("opacity-0", "translate-y-10");
     }, 200);
 
